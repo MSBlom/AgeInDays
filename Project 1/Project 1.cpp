@@ -6,6 +6,9 @@
 #include <string>
 #include <windows.h>
 
+#include <chrono>
+#include <ctime>
+
 #include "counting_days.h"
 
 using std::cin;
@@ -56,13 +59,20 @@ Datum ask_for_date(bool allowed_to_be_past) {
   return today;
 }
 
+Datum get_today_date() {
+  auto time = std::chrono::system_clock::now();
+  std::time_t end_time = std::chrono::system_clock::to_time_t(time);
+
+  tm local_tm = *localtime(&end_time);
+  return {local_tm.tm_year + 1900, local_tm.tm_mon + 1, local_tm.tm_mday};
+}
+
 int main() {
   Datum birthday{0, 0, 0};
   Datum today{0, 0, 0};
 
   try {
-    cout << "What is today's date (Y / M / D)?" << endl;
-    today = ask_for_date(false);
+    today = get_today_date();
 
     cout << "What is your birthday (Y / M / D)?" << endl;
     birthday = ask_for_date(true);
