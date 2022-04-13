@@ -89,7 +89,7 @@ namespace age_in_days {
 		}
 
 		bool operator>(Datum rhs) {
-			return *this < rhs;
+			return rhs < *this;
 		}
 	};
 
