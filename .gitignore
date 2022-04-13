@@ -1,4 +1,7 @@
+# Visual Studio
 /.vs/
+
+# Compiler output
 /Project 1/x64/Debug/
 /UnitTest1/x64/Debug/
 /x64/Debug/
