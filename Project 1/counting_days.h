@@ -33,7 +33,7 @@ namespace age_in_days {
 	/// </summary>
 	/// <param name="year">The year</param>
 	/// <param name="month">Month, indexed from 0 (jan.) to 11 (dec.)</param>
-	/// <returns>Days_Result</returns>
+	/// <returns>Number of days in the month</returns>
 	int days_in_month(int year, int month) {
 
 		if (month < 0 || month > 11) {
@@ -43,12 +43,12 @@ namespace age_in_days {
 			// flag in struct:
 			//return {false,0};
 
-			//throw std::runtime_error("")
+			throw std::runtime_error("Invalid month " + month);
 		}
 		const int months[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
 		int schikkeldag = month == 1 && schrikkeljaar(year) ? 1 : 0;
 		int result = months[month] + schikkeldag;
-		return { true, result };
+		return result;
 	}
 
 

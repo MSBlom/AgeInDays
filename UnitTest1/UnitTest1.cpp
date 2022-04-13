@@ -4,6 +4,7 @@
 #include "../Project 1/counting_days.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace age_in_days;
 
 namespace UnitTest1
 {
@@ -85,15 +86,5 @@ namespace UnitTest1
 			Assert::IsFalse(t1 > t1);
 		}
 
-		TEST_METHOD(invalid_days_in_month_call)
-		{
-			Days_Result days = days_in_month(2022, 33);
-			if (days.valid) {
-				// goed, verder
-			}
-			else {
-				cout << "Dat gaat niet." << endl;
-			}
-		}
 	};
 }
