@@ -19,44 +19,29 @@ using std::string;
 
 using namespace age_in_days;
 
-struct Person {
-  string name;
-  int age;
+Datum ask_for_date_birthday(bool birthday_can_be_past_or_present) {
+    int date_birthday_month, date_birthday_day, date_birthday_year;
 
-  Person(string n, int a) { // constructor (returnt impliciet void)
-    name = n;
-    age = a;
-    if (age > 130) {
-      throw std::runtime_error("Impossible age.");
-    }
-  }
-};
-
-Person matthijs = Person("Matthijs", 38);
-
-Datum ask_for_date(bool allowed_to_be_past) {
-  int date_today_month, date_today_day, date_today_year;
-
-  cout << "Year: ";
-  cin >> date_today_year;
-  if (date_today_year > 2122 || date_today_year <= 2021) {
+    cout << "Year: ";
+  cin >> date_birthday_year;
+  if (date_birthday_year > 2122 || date_birthday_year <= 1922) {
     throw runtime_error("Year invalid.");
   }
 
   cout << "Month: ";
-  cin >> date_today_month;
-  if (date_today_month > 12 || date_today_month <= 0) {
+  cin >> date_birthday_month;
+  if (date_birthday_month > 12 || date_birthday_month <= 0) {
     throw runtime_error("ajdfkl invalid.");
   }
   cout << "Day: ";
-  cin >> date_today_day;
-  int month_length = days_in_month(date_today_year, date_today_month);
-  if (date_today_day > month_length || date_today_day <= 0) {
+  cin >> date_birthday_day;
+  int month_length = days_in_month(date_birthday_year, date_birthday_month);
+  if (date_birthday_day > month_length || date_birthday_day <= 0) {
     throw std::runtime_error("Day invalid.");
   }
 
-  Datum today = {date_today_year, date_today_month, date_today_day};
-  return today;
+  Datum birthday = { date_birthday_year, date_birthday_month, date_birthday_day };
+  return birthday;
 }
 
 Datum get_today_date() {
@@ -75,7 +60,7 @@ int main() {
     today = get_today_date();
 
     cout << "What is your birthday (Y / M / D)?" << endl;
-    birthday = ask_for_date(true);
+    birthday = ask_for_date_birthday(true);
   } catch (std::runtime_error the_error) {
     cout << "This is not possible." << endl;
     return 0;
